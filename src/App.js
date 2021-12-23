@@ -46,7 +46,7 @@ function App() {
   const Score = (props) => {
     const {
       game: {
-        fixture: { date },
+        fixture: { date, id },
         score: { fulltime },
         teams,
       },
@@ -56,6 +56,7 @@ function App() {
       <div className="score">
         <div className="score-date">{new Date(date).toLocaleString()}</div>
         <div className="score-grid">
+          <div>{id}</div>
           <div>{teams.home.name}</div>
           <div>{teams.away.name}</div>
           <div>{fulltime.home}</div>
@@ -68,7 +69,7 @@ function App() {
   const Odds = (props) => {
     const {
       odd: {
-        league: { name },
+        fixture: { id },
         bookmakers,
       },
     } = props;
@@ -76,7 +77,7 @@ function App() {
     return (
       <div className="score">
         <div className="score-grid">
-          <div>{name}</div>
+          <div>{id}</div>
           {bookmakers.map((item) => {
             return (
               <div>
