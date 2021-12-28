@@ -10,7 +10,7 @@ function App() {
 
   const toParamString = (obj) => new URLSearchParams(obj).toString();
 
-  const apiKey = "3914b827d25c9a793d6af1ec9c312d55";
+  const apiKey = "b8815df003f549ac6fd8db7f3e27c045";
   const getGames = ({ season, league, date }) => {
     const url = `${apiUrlGames}?${toParamString({ season, league, date })}`;
     return fetch(url, {
@@ -43,71 +43,16 @@ function App() {
       .then((data) => data.response);
   };
 
-  const Score = (props) => {
-    const {
-      game: {
-        fixture: { date, id },
-        score: { fulltime },
-        teams,
-      },
-    } = props;
-
-    return (
-      <div className="score">
-        <div className="score-date">{new Date(date).toLocaleString()}</div>
-        <div className="score-grid">
-          <div>{id}</div>
-          <div>{teams.home.name}</div>
-          <div>{teams.away.name}</div>
-          <div>{fulltime.home}</div>
-          <div>{fulltime.away}</div>
-        </div>
-      </div>
-    );
-  };
-
-  const Odds = (props) => {
-    const {
-      odd: {
-        fixture: { id },
-        bookmakers,
-      },
-    } = props;
-
-    return (
-      <div className="score">
-        <div className="score-grid">
-          <div>{id}</div>
-          {bookmakers.map((item) => {
-            return (
-              <div>
-                {item.bets.map((subItem) => {
-                  return (
-                    <div>
-                      {subItem.values.map((sub) => {
-                        return <div>{sub.odd}</div>;
-                      })}
-                    </div>
-                  );
-                })}
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    );
-  };
-
   useEffect(() => {
-    getGames({ season: 2021, league: 78, date: "2021-12-18" }).then((data) =>
+    getGames({ season: 2021, league: 39, date: "2021-12-28" }).then((data) =>
       setGames(data)
     );
     getOdds({
       season: 2021,
       bet: 1,
       bookmaker: 6,
-      date: "2021-12-18",
-      league: 78,
+      date: "2021-12-28",
+      league: 39,
     }).then((data) => setOdds(data));
   }, []);
 
@@ -115,17 +60,32 @@ function App() {
     <div>
       <h1>Games</h1>
       <div className="games">
+        test
         {games.map((game) => {
-          const {
-            fixture: { id },
-          } = game;
-          return <Score key={id} game={game} />;
+          odds
+            .filter((item) => item.fixture.id == game.fixture.id)
+            .map((odds) => {
+              return <div></div>;
+            });
         })}
-        {odds.map((odd) => {
-          const {
-            fixture: { id },
-          } = odd;
-          return <Odds key={id} odd={odd} />;
+        {games.map((game) => {
+          odds
+            .filter((item) => item.fixture.id == game.fixture.id)
+            .map((odd) => {
+              console.log(game.fulltime);
+              console.log(odd.bookmakers[0].bets[0].values[0].odd);
+              return (
+                <div>
+                  <div>{game.id}</div>
+                  <div>{game.fulltime}</div>
+                  <div>{game.away}</div>
+                  <div>{game.home}</div>
+                  <div>odd{odd.bookmakers[0].bets[0].values[0].odd}</div>
+                  <div>{odd.bookmakers[0].bets[0].values[1].odd}</div>
+                  <div>{odd.bookmakers[0].bets[0].values[2].odd}</div>
+                </div>
+              );
+            });
         })}
       </div>
     </div>
