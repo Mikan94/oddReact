@@ -64,13 +64,6 @@ function App() {
         {games.map((game) => {
           odds
             .filter((item) => item.fixture.id == game.fixture.id)
-            .map((odds) => {
-              return <div></div>;
-            });
-        })}
-        {games.map((game) => {
-          odds
-            .filter((item) => item.fixture.id == game.fixture.id)
             .map((odd) => {
               console.log(game.fulltime);
               console.log(odd.bookmakers[0].bets[0].values[0].odd);
