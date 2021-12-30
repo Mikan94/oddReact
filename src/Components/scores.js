@@ -11,8 +11,8 @@ function Scores() {
   const toParamString = (obj) => new URLSearchParams(obj).toString();
 
   const apiKey = "b8815df003f549ac6fd8db7f3e27c045";
-  const getGames = ({ season, league, date }) => {
-    const url = `${apiUrlGames}?${toParamString({ season, league, date })}`;
+  const getGames = ({ season, league, round }) => {
+    const url = `${apiUrlGames}?${toParamString({ season, league, round })}`;
     return fetch(url, {
       method: "GET",
       headers: {
@@ -44,8 +44,8 @@ function Scores() {
   };
 
   useEffect(() => {
-    getGames({ season: 2021, league: 39, date: "2021-12-28" }).then((data) =>
-      setGames(data)
+    getGames({ season: 2021, league: 39, round: "Regular Season - 20" }).then(
+      (data) => setGames(data)
     );
     getOdds({
       season: 2021,
@@ -77,7 +77,6 @@ function Scores() {
                 <div>Bet Home: {odd.bookmakers[0].bets[0].values[0].odd}</div>
                 <div>Bet Draw: {odd.bookmakers[0].bets[0].values[1].odd}</div>
                 <div>Bet Away: {odd.bookmakers[0].bets[0].values[2].odd}</div>
-
                 <div>##### END ##### </div>
                 <p></p>
               </div>
