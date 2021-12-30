@@ -56,30 +56,51 @@ function App() {
     }).then((data) => setOdds(data));
   }, []);
 
+  const Scores = (props) => {
+    const {
+      game: {
+        score: { fulltime },
+        teams,
+        bookmakers,
+      },
+    } = props;
+    return (
+      <div>
+        <div>{teams.away.name}</div>
+        <div>{teams.home.name}</div>
+        <div>{fulltime.home}</div>
+        <div>{fulltime.away}</div>
+      </div>
+    );
+  };
+
   return (
     <div>
       <h1>Games</h1>
       <div className="games">
-        test
-        {games.map((game) => {
+        {games.map((game) =>
           odds
             .filter((item) => item.fixture.id == game.fixture.id)
-            .map((odd) => {
-              console.log(game.fulltime);
-              console.log(odd.bookmakers[0].bets[0].values[0].odd);
-              return (
-                <div>
-                  <div>{game.id}</div>
-                  <div>{game.fulltime}</div>
-                  <div>{game.away}</div>
-                  <div>{game.home}</div>
-                  <div>odd{odd.bookmakers[0].bets[0].values[0].odd}</div>
-                  <div>{odd.bookmakers[0].bets[0].values[1].odd}</div>
-                  <div>{odd.bookmakers[0].bets[0].values[2].odd}</div>
-                </div>
-              );
-            });
-        })}
+            .map((odd) => (
+              <div>
+                <div>##### START ##### </div>
+                <div>GameID: {game.fixture.id}</div>
+                <div>{new Date(game.fixture.date).toLocaleString()}</div>
+                <div>Team Home: {game.teams.home.name}</div>
+                <div>Team Away: {game.teams.away.name}</div>
+                <div>Score Home: {game.score.fulltime.home}</div>
+                <div>Score Away: {game.score.fulltime.away}</div>
+                <div>--------------------------</div>
+                <div>OddID: {odd.fixture.id}</div>
+                <div>Bet Home: {odd.bookmakers[0].bets[0].values[0].odd}</div>
+                <div>Bet Draw: {odd.bookmakers[0].bets[0].values[1].odd}</div>
+                <div>Bet Away: {odd.bookmakers[0].bets[0].values[2].odd}</div>
+
+                <div>##### END ##### </div>
+                <p></p>
+              </div>
+            ))
+        )}
       </div>
     </div>
   );
