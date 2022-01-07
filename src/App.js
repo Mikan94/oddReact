@@ -1,11 +1,12 @@
 import React from "react";
-import Scores from "./Components/scores";
+import Games from "./Components/games";
+import { Router, Route } from "react-router";
 
 function App() {
   return (
-    <div>
-      <Scores />
-    </div>
+    <>
+      <Games />
+    </>
   );
 }
 
