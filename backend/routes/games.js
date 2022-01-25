@@ -9,28 +9,28 @@ router.route("/").get((req, res) => {
 });
 
 router.route("/add").post((req, res) => {
-  const data = req.body.data;
-  //const date = req.body.date;
-  //const round = req.body.round;
-  //const teamHome = req.body.teamHome;
-  //const teamAway = req.body.teamAway;
-  //const scoreHome = req.body.scoreHome;
-  //const scoreAway = req.body.scoreAway;
-  //const oddHome = req.body.oddHome;
-  //const oddAway = req.body.oddAway;
-  //const oddDraw = req.body.oddDraw;
+  const gameID = req.body.gameID;
+  const date = req.body.date;
+  const teamHome = req.body.teamHome;
+  const teamAway = req.body.teamAway;
+  const scoreHome = req.body.scoreHome;
+  const scoreAway = req.body.scoreAway;
+  const oddID = req.body.oddID;
+  const oddHome = req.body.oddHome;
+  const oddAway = req.body.oddAway;
+  const oddDraw = req.body.oddDraw;
 
   const newGame = new Game({
-    //date,
-    //round,
-    //teamHome,
-    //teamAway,
-    //scoreHome,
-    //scoreAway,
-    //oddHome,
-    //oddAway,
-    //oddDraw,
-    data,
+    gameID,
+    date,
+    teamHome,
+    teamAway,
+    scoreHome,
+    scoreAway,
+    oddID,
+    oddHome,
+    oddAway,
+    oddDraw,
   });
 
   newGame

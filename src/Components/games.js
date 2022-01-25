@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from "react";
 import axios from "axios";
+import React, { useState, useEffect } from "react";
 
 import Card from "./Card";
 
 function Games() {
   const [games, setGames] = useState([]);
   const [odds, setOdds] = useState([]);
-  const [teamHome, setTeamHome] = useState([]);
 
   const apiHost = "v3.football.api-sports.io";
   const apiUrlGames = `https://${apiHost}/fixtures`;
@@ -29,16 +28,6 @@ function Games() {
       .then((data) => data.response);
   };
 
-  const postGames = (props) => {
-    const data = {
-      home: this.props.teamHome,
-    };
-
-    axios
-      .post("http:localhost/5000/games/add", data)
-      .then((res) => console.log(res.data));
-  };
-
   const getOdds = ({ season, bet, bookmaker, league }) => {
     const url = `${apiUrlOdds}?${toParamString({
       season,
@@ -57,8 +46,8 @@ function Games() {
       .then((data) => data.response);
   };
 
-  useEffect(() => {
-    getGames({ season: 2021, league: 39, round: "Regular Season - 21" }).then(
+  /*useEffect(() => {
+    getGames({ season: 2021, league: 78, round: "Regular Season - 19" }).then(
       (data) => {
         setGames(data);
       }
@@ -68,47 +57,33 @@ function Games() {
       season: 2021,
       bet: 1,
       bookmaker: 6,
-      league: 39,
+      league: 78,
     }).then((data) => setOdds(data));
-  }, []);
+  }, []); */
 
-  const Card = ({
-    gameID,
-    date,
-    teamHome,
-    teamAway,
-    scoreHome,
-    scoreAway,
-    oddID,
-    oddHome,
-    oddDraw,
-    oddAway,
-  }) => {
-    return (
-      <>
-        <div>
-          <div>##### START ##### </div>
-          <div>{gameID}</div>
-          <div>{date}</div>
-          <div>{teamHome}</div>
-          <div>{teamAway}</div>
-          <div>{scoreHome}</div>
-          <div>{scoreAway}</div>
-          <div>----------------</div>
-          <div>{oddID}</div>
-          <div>{oddHome}</div>
-          <div>{oddDraw}</div>
-          <div>{oddAway}</div>
-          <div>##### ENDE ##### </div>
-        </div>
-      </>
+  const getData = () => {
+    getGames({ season: 2021, league: 78, round: "Regular Season - 20" }).then(
+      (data) => {
+        setGames(data);
+        console.log(games);
+      }
     );
+
+    getOdds({
+      season: 2021,
+      bet: 1,
+      bookmaker: 6,
+      league: 78,
+    }).then((data) => {
+      setOdds(data);
+      console.log(odds);
+    });
   };
 
   return (
     <div>
       <h1>Games</h1>
-      <button>Post to DB!</button>
+      <button onClick={getData}>Get Data now!</button>
       <div className="games">
         {games.map((game) =>
           odds
