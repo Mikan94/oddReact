@@ -46,21 +46,6 @@ function Games() {
       .then((data) => data.response);
   };
 
-  /*useEffect(() => {
-    getGames({ season: 2021, league: 78, round: "Regular Season - 19" }).then(
-      (data) => {
-        setGames(data);
-      }
-    );
-
-    getOdds({
-      season: 2021,
-      bet: 1,
-      bookmaker: 6,
-      league: 78,
-    }).then((data) => setOdds(data));
-  }, []); */
-
   const getData = () => {
     getGames({ season: 2021, league: 78, round: "Regular Season - 20" }).then(
       (data) => {
@@ -80,10 +65,37 @@ function Games() {
     });
   };
 
+  const [dataDB, setDataDB] = useState([]);
+
+  const datasDB = () => {
+    axios.get("http://localhost:5000/games").then((response) => {
+      setDataDB(response.data);
+    });
+  };
+
+  function gamesList() {
+    return dataDB.map((currentGame) => {
+      return (
+        <>
+          <div>{currentGame.gameID}</div>
+          <div>{currentGame.teamHome}</div>
+          <div>{currentGame.teamAway}</div>
+          <div>{currentGame.scoreHome}</div>
+          <div>{currentGame.scoreAway}</div>
+          <div>{currentGame.oddId}</div>
+          <div>{currentGame.oddHome}</div>
+          <div>{currentGame.oddDraw}</div>
+          <div>{currentGame.oddAway}</div>
+        </>
+      );
+    });
+  }
+
   return (
     <div>
       <h1>Games</h1>
-      <button onClick={getData}>Get Data now!</button>
+      <button onClick={getData}>Get Data from API now!</button>
+      <button onClick={datasDB}>Get data from DB!</button>
       <div className="games">
         {games.map((game) =>
           odds
@@ -103,6 +115,7 @@ function Games() {
             ))
         )}
       </div>
+      <div>{gamesList()}</div>
     </div>
   );
 }

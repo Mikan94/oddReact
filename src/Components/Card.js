@@ -23,7 +23,7 @@ export default class Card extends Component {
         teamHome: data.teamHome,
         teamAway: data.teamAway,
         scoreHome: data.scoreHome,
-        scoreAway: data.teamAway,
+        scoreAway: data.scoreAway,
         oddID: data.oddID,
         oddHome: data.oddHome,
         oddDraw: data.oddDraw,
