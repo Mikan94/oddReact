@@ -2,7 +2,7 @@ import React, { Component, useEffect } from "react";
 import axios from "axios";
 
 export default class Card extends Component {
-  render() {
+  onSubmit() {
     const data = {
       gameID: this.props.gameID,
       date: this.props.date,
@@ -16,43 +16,33 @@ export default class Card extends Component {
       oddAway: this.props.oddAway,
     };
 
-    function onSubmit() {
-      const gameData = {
-        gameID: data.gameID,
-        date: data.date,
-        teamHome: data.teamHome,
-        teamAway: data.teamAway,
-        scoreHome: data.scoreHome,
-        scoreAway: data.scoreAway,
-        oddID: data.oddID,
-        oddHome: data.oddHome,
-        oddDraw: data.oddDraw,
-        oddAway: data.oddAway,
-      };
+    console.log(data);
 
-      console.log(gameData);
+    axios
+      .post("http://localhost:5000/games/add", data)
+      .then((res) => console.log(res.data));
+  }
 
-      axios
-        .post("http://localhost:5000/games/add", gameData)
-        .then((res) => console.log(res.gameData));
-    }
+  componentDidMount() {
+    this.onSubmit();
+  }
 
+  render() {
     return (
       <>
         <div>
-          <button onClick={onSubmit}>Click to submit!</button>
           <div>##### START ##### </div>
-          <div>{data.gameID}</div>
-          <div>{data.date}</div>
-          <div>{data.teamHome}</div>
-          <div>{data.teamAway}</div>
-          <div>{data.scoreHome}</div>
-          <div>{data.scoreAway}</div>
+          <div>{this.props.gameID}</div>
+          <div>{this.props.date}</div>
+          <div>{this.props.teamHome}</div>
+          <div>{this.props.teamAway}</div>
+          <div>{this.props.scoreHome}</div>
+          <div>{this.props.scoreAway}</div>
           <div>----------------</div>
-          <div>{data.oddID}</div>
-          <div>{data.oddHome}</div>
-          <div>{data.oddDraw}</div>
-          <div>{data.oddAway}</div>
+          <div>{this.props.oddID}</div>
+          <div>{this.props.oddHome}</div>
+          <div>{this.props.oddDraw}</div>
+          <div>{this.props.oddAway}</div>
           <div>##### ENDE ##### </div>
         </div>
       </>

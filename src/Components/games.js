@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Card from "./Card";
 
 function Games() {
+  // getData API
   const [games, setGames] = useState([]);
   const [odds, setOdds] = useState([]);
 
@@ -65,6 +66,7 @@ function Games() {
     });
   };
 
+  // getData DB
   const [dataDB, setDataDB] = useState([]);
 
   const datasDB = () => {
@@ -73,6 +75,7 @@ function Games() {
     });
   };
 
+  // displayData DB
   function gamesList() {
     return dataDB.map((currentGame) => {
       return (
@@ -82,7 +85,7 @@ function Games() {
           <div>{currentGame.teamAway}</div>
           <div>{currentGame.scoreHome}</div>
           <div>{currentGame.scoreAway}</div>
-          <div>{currentGame.oddId}</div>
+          <div>{currentGame.oddID}</div>
           <div>{currentGame.oddHome}</div>
           <div>{currentGame.oddDraw}</div>
           <div>{currentGame.oddAway}</div>
@@ -96,6 +99,8 @@ function Games() {
       <h1>Games</h1>
       <button onClick={getData}>Get Data from API now!</button>
       <button onClick={datasDB}>Get data from DB!</button>
+
+      {/* displayData API */}
       <div className="games">
         {games.map((game) =>
           odds
