@@ -1,11 +1,12 @@
 import React from "react";
-import Games from "./Components/games";
-import { Router, Route } from "react-router";
+import Api from "./Services/Api";
+import GamesDB from "./Services/Database/GamesDB";
 
 function App() {
   return (
     <>
-      <Games />
+      <Api />
+      <GamesDB />
     </>
   );
 }
