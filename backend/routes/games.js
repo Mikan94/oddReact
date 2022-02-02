@@ -10,6 +10,7 @@ router.route("/").get((req, res) => {
 
 router.route("/add").post((req, res) => {
   const gameID = req.body.gameID;
+  const round = req.body.round;
   const date = req.body.date;
   const teamHome = req.body.teamHome;
   const teamAway = req.body.teamAway;
@@ -22,6 +23,7 @@ router.route("/add").post((req, res) => {
 
   const newGame = new Game({
     gameID,
+    round,
     date,
     teamHome,
     teamAway,
@@ -35,7 +37,7 @@ router.route("/add").post((req, res) => {
 
   newGame
     .save()
-    .then(() => res.json("Game added"))
+    .then(() => res.json("Games added"))
     .catch((err) => res.setMaxListeners(400).json("Error: " + err));
 });
 

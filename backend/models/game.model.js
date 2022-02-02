@@ -5,6 +5,7 @@ const Schema = mongoose.Schema;
 const gameSchema = new Schema(
   {
     gameID: String,
+    round: String,
     date: String,
     teamHome: String,
     teamAway: String,

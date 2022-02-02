@@ -1,12 +1,12 @@
 import React from "react";
 import Api from "./Services/Api";
-import GamesDB from "./Services/Database/GamesDB";
+import GetDataDB from "./Services/Database/Games/getDataDB";
 
 function App() {
   return (
     <>
       <Api />
-      <GamesDB />
+      <GetDataDB />
     </>
   );
 }

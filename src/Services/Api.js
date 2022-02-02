@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
+import PostDataDB from "./Database/Games/postDataDB";
 
-import GamesDB from "./Database/GamesDB";
-
-function Games() {
+function Api() {
   const [games, setGames] = useState([]);
   const [odds, setOdds] = useState([]);
 
@@ -49,7 +48,7 @@ function Games() {
     getGamesData({
       season: 2021,
       league: 78,
-      round: "Regular Season - 20",
+      round: "Regular Season - 22",
     }).then((data) => {
       setGames(data);
       console.log(games);
@@ -70,12 +69,14 @@ function Games() {
     <div>
       <button onClick={getDataAPI}>GetDataAPI</button>
       <div className="games">
-        {games.map((game) =>
-          odds
-            .filter((item) => item.fixture.id == game.fixture.id)
-            .map((odd) => (
-              <GamesDB
+        {odds.map((odd) =>
+          games
+            .filter((item) => item.fixture.id == odd.fixture.id)
+            .map((game) => (
+              <PostDataDB
                 gameID={game.fixture.id}
+                round={game.league.round}
+                date={game.fixture.date}
                 teamHome={game.teams.home.name}
                 teamAway={game.teams.away.name}
                 scoreHome={game.score.fulltime.home}
@@ -92,4 +93,4 @@ function Games() {
   );
 }
 
-export default Games;
+export default Api;
