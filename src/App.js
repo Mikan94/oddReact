@@ -1,12 +1,16 @@
 import React from "react";
-import Api from "./Services/Api";
-import GetDataDB from "./Services/Database/Games/getDataDB";
+import GamesData from "./Services/Api/GamesData";
+import OddsData from "./Services/Api/OddsData";
+import GetGamesDB from "./Services/Database/Games/getGamesDB";
+import GetOddsDB from "./Services/Database/Odds/getOddsDB";
 
 function App() {
   return (
     <>
-      <Api />
-      <GetDataDB />
+      <GamesData />
+      <OddsData />
+      <GetGamesDB />
+      <GetOddsDB />
     </>
   );
 }

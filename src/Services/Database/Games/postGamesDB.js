@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-export default class postDataDB extends Component {
-  postDataDB() {
+export default class postGamesDB extends Component {
+  postGamesDataDB() {
     const data = {
       gameID: this.props.gameID,
       round: this.props.round,
@@ -11,10 +11,6 @@ export default class postDataDB extends Component {
       teamAway: this.props.teamAway,
       scoreHome: this.props.scoreHome,
       scoreAway: this.props.scoreAway,
-      oddID: this.props.oddID,
-      oddHome: this.props.oddHome,
-      oddDraw: this.props.oddDraw,
-      oddAway: this.props.oddAway,
     };
 
     console.log(data);
@@ -25,7 +21,7 @@ export default class postDataDB extends Component {
   }
 
   componentDidMount() {
-    this.postDataDB();
+    this.postGamesDataDB();
   }
   render() {
     return <>test</>;

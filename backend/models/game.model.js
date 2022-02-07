@@ -11,10 +11,6 @@ const gameSchema = new Schema(
     teamAway: String,
     scoreHome: String,
     scoreAway: String,
-    oddID: String,
-    oddHome: String,
-    oddAway: String,
-    oddDraw: String,
   },
   {
     timestamps: true,
