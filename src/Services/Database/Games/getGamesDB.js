@@ -29,12 +29,6 @@ function GetGamesDB() {
               <div>{new Date(item.date).toLocaleString()}</div>
               <div>{item.teamHome}</div>
               <div>{item.teamAway}</div>
-              <div>{item.scoreHome}</div>
-              <div>{item.scoreAway}</div>
-              <div>{item.oddID}</div>
-              <div>{item.oddHome}</div>
-              <div>{item.oddDraw}</div>
-              <div>{item.oddAway}</div>
             </div>
           ))}
         </div>

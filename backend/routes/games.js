@@ -13,8 +13,6 @@ router.route("/add").post((req, res) => {
   const date = req.body.date;
   const teamHome = req.body.teamHome;
   const teamAway = req.body.teamAway;
-  const scoreHome = req.body.scoreHome;
-  const scoreAway = req.body.scoreAway;
 
   const newGame = new Game({
     gameID,
@@ -22,8 +20,6 @@ router.route("/add").post((req, res) => {
     date,
     teamHome,
     teamAway,
-    scoreHome,
-    scoreAway,
   });
 
   newGame

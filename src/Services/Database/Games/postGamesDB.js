@@ -9,8 +9,6 @@ export default class postGamesDB extends Component {
       date: this.props.date,
       teamHome: this.props.teamHome,
       teamAway: this.props.teamAway,
-      scoreHome: this.props.scoreHome,
-      scoreAway: this.props.scoreAway,
     };
 
     console.log(data);
