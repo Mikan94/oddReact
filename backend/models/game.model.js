@@ -9,6 +9,8 @@ const gameSchema = new Schema(
     date: String,
     teamHome: String,
     teamAway: String,
+    scoreHome: String,
+    scoreAway: String,
   },
   {
     timestamps: true,

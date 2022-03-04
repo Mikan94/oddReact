@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 8080;
 
 // Middleware
 app.use(cors());
@@ -21,12 +21,10 @@ connection.once("open", () => {
 
 const gamesRouter = require("./routes/games");
 const oddsRouter = require("./routes/odds");
-const scoresRouter = require("./routes/scores");
 const usersRouter = require("./routes/users");
 
 app.use("/games", gamesRouter);
 app.use("/odds", oddsRouter);
-app.use("/scores", scoresRouter);
 app.use("/users", usersRouter);
 
 app.listen(port, () => {
