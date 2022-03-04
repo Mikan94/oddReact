@@ -5,7 +5,7 @@ function GetGamesDB() {
   const [gamesData, setGamesData] = useState([]);
 
   const getDataDB = () => {
-    axios.get("http://localhost:5000/games").then((response) => {
+    axios.get("http://localhost:8080/games").then((response) => {
       setGamesData(response.data);
     });
     console.log("getted data from db");
@@ -29,6 +29,8 @@ function GetGamesDB() {
               <div>{new Date(item.date).toLocaleString()}</div>
               <div>{item.teamHome}</div>
               <div>{item.teamAway}</div>
+              <div>{item.scoreHome}</div>
+              <div>{item.scoreAway}</div>
             </div>
           ))}
         </div>

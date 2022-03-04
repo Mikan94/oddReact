@@ -9,12 +9,14 @@ export default class postGamesDB extends Component {
       date: this.props.date,
       teamHome: this.props.teamHome,
       teamAway: this.props.teamAway,
+      scoreHome: this.props.scoreHome,
+      scoreAway: this.props.scoreAway,
     };
 
     console.log(data);
 
     axios
-      .post("http://localhost:5000/games/add", data)
+      .post("http://localhost:8080/games/add", data)
       .then((res) => console.log(res.data));
   }
 

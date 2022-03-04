@@ -13,7 +13,7 @@ export default class postGamesDB extends Component {
     console.log(data);
 
     axios
-      .post("http://localhost:5000/odds/add", data)
+      .post("http://localhost:8080/odds/add", data)
       .then((res) => console.log(res.data));
   }
 

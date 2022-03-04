@@ -28,7 +28,7 @@ function GamesData() {
     getGamesData({
       season: 2021,
       league: 78,
-      round: "Regular Season - 30",
+      round: "Regular Season - 27",
     }).then((data) => {
       setGames(data);
       console.log(games);
@@ -53,6 +53,8 @@ function GamesData() {
             date={game.fixture.date}
             teamHome={game.teams.home.name}
             teamAway={game.teams.away.name}
+            scoreHome={game.score.fulltime.home}
+            scoreAway={game.score.fulltime.away}
           />
         ))}
       </div>

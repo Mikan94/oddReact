@@ -5,7 +5,7 @@ function GetOddsDB() {
   const [oddsData, setOddsData] = useState([]);
 
   const getDataDB = () => {
-    axios.get("http://localhost:5000/odds").then((response) => {
+    axios.get("http://localhost:8080/odds").then((response) => {
       setOddsData(response.data);
     });
     console.log("getted data from db");
