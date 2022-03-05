@@ -5,7 +5,9 @@ export default class Card extends Component {
   render() {
     return (
       <>
-        <div className="card-wrapper">{this.props.roundID}</div>
+        <button onClick={""} className="card-wrapper">
+          {this.props.roundID}
+        </button>
       </>
     );
   }
