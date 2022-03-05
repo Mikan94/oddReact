@@ -4,8 +4,6 @@ import axios from "axios";
 function GetGamesData() {
   const [gamesData, setGamesData] = useState([]);
   const [oddsData, setOddsData] = useState([]);
-  const [scoresData, setScoresData] = useState([]);
-  const [roundData, setRoundData] = useState([]);
 
   const getDataDB = () => {
     axios.get("http://localhost:8080/games").then((response) => {
@@ -17,16 +15,6 @@ function GetGamesData() {
       setOddsData(response.data);
     });
     console.log("getted odds from db");
-
-    axios.get("http://localhost:8080/scores").then((response) => {
-      setScoresData(response.data);
-    });
-    console.log("getted scores from db");
-
-    axios.get("http://localhost:8080/round").then((response) => {
-      setRoundData(response.data);
-    });
-    console.log("getted rounds from db");
   };
 
   useEffect(() => {
@@ -38,7 +26,45 @@ function GetGamesData() {
 
   return (
     <>
-      <div>test</div>
+      <h1>Games</h1>
+      <div>
+        {gamesData.map((game) =>
+          oddsData
+            .filter((item) => game.gameID == item.oddID)
+            .map((odd) => {
+              return (
+                <>
+                  <div>{game.gameID}</div>
+                  <div>{game.round}</div>
+                  <div>{new Date(game.date).toLocaleString()}</div>
+                  <div>{game.teamHome}</div>
+                  <div>{game.teamAway}</div>
+                  <div>{game.scoreHome}</div>
+                  <div>{game.scoreAway}</div>
+                  <div>{odd.oddID}</div>
+                  <div>{odd.oddHome}</div>
+                  <div>{odd.oddDraw}</div>
+                  <div>{odd.oddAway}</div>
+                </>
+              );
+            })
+        )}
+      </div>
+      <div>
+        {gamesData.map((game) => {
+          return (
+            <>
+              <div>{game.gameID}</div>
+              <div>{game.round}</div>
+              <div>{new Date(game.date).toLocaleString()}</div>
+              <div>{game.teamHome}</div>
+              <div>{game.teamAway}</div>
+              <div>{game.scoreHome}</div>
+              <div>{game.scoreAway}</div>
+            </>
+          );
+        })}
+      </div>
     </>
   );
 }

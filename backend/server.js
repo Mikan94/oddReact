@@ -21,10 +21,12 @@ connection.once("open", () => {
 
 const gamesRouter = require("./routes/games");
 const oddsRouter = require("./routes/odds");
+const roundsRouter = require("./routes/rounds");
 const usersRouter = require("./routes/users");
 
 app.use("/games", gamesRouter);
 app.use("/odds", oddsRouter);
+app.use("/rounds", roundsRouter);
 app.use("/users", usersRouter);
 
 app.listen(port, () => {
