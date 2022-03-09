@@ -42,11 +42,7 @@ function OddsData() {
   };
 
   useEffect(() => {
-    const callApi = setInterval(() => {
-      getDataAPI();
-      setOdds([]);
-    }, 10000);
-    return () => clearInterval(callApi);
+    getDataAPI();
   }, []);
 
   return (

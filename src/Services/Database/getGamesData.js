@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
-
 function GetGamesData() {
   const [gamesData, setGamesData] = useState([]);
   const [oddsData, setOddsData] = useState([]);
@@ -30,7 +29,7 @@ function GetGamesData() {
     <>
       <h1>Games</h1>
       <div>{state.currentRound}</div>
-      <button onClick={() => navigate("/rounds")}>rounds</button>
+      <button onClick={() => navigate("/")}>rounds</button>
       {state.item == state.currentRound ? (
         <div>
           true
@@ -41,10 +40,12 @@ function GetGamesData() {
                 .filter((item) => game.gameID == item.oddID)
                 .map((odd) => {
                   return (
-                    <>
+                    <button className="card-wrapper">
                       <div>{game.gameID}</div>
-                      <div>{game.round}</div>
-                      <div>{new Date(game.date).toLocaleString()}</div>
+
+                      <div>
+                        {game.round}/ {new Date(game.date).toLocaleString()}
+                      </div>
                       <div>{game.teamHome}</div>
                       <div>{game.teamAway}</div>
                       <div>{game.scoreHome}</div>
@@ -53,7 +54,7 @@ function GetGamesData() {
                       <div>{odd.oddHome}</div>
                       <div>{odd.oddDraw}</div>
                       <div>{odd.oddAway}</div>
-                    </>
+                    </button>
                   );
                 })
             )}

@@ -7,13 +7,14 @@ import GetGamesDB from "./Services/Database/Games/getGamesDB";
 import GetOddsDB from "./Services/Database/Odds/getOddsDB";
 import GetGamesData from "./Services/Database/getGamesData";
 import GetRounds from "./Services/Database/getRounds";
+import TestCard from "../src/Services/Database/testCard";
 
 function App() {
   return (
     <>
       <Router>
         <Routes>
-          <Route path="/rounds" element={<GetRounds />} />
+          <Route path="/" element={<GetRounds />} />
           <Route path="/games" element={<GetGamesData />} />
         </Routes>
       </Router>

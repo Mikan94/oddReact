@@ -28,7 +28,7 @@ function GamesData() {
     getGamesData({
       season: 2021,
       league: 78,
-      round: "Regular Season - 24",
+      round: "Regular Season - 34",
     }).then((data) => {
       setGames(data);
       console.log(games);
@@ -36,11 +36,7 @@ function GamesData() {
   };
 
   useEffect(() => {
-    const callApi = setInterval(() => {
-      getDataAPI();
-      setGames([]);
-    }, 10000);
-    return () => clearInterval(callApi);
+    getDataAPI();
   }, []);
 
   return (
